@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Price Predict</title>
+
+   <style>
+      /* 
+         Color Palette: https://colorhunt.co/palette/e9e3dfff7a30465c88000000
+         #E9E3DF - Light Beige (Background)
+         #FF7A30 - Orange (Primary Action)
+         #465C88 - Slate Blue (Header/Secondary)
+         #000000 - Black (Accents/Text)
+      */
+      :root {
+         --color-dark-blue: #465C88; /* Header 背景 */
+         --color-primary: #FF7A30;   /* 上傳按鈕、Focus 框線 */
+         --color-teal: #000000;      /* 裝飾線條、連結 Hover */
+         --color-pink: #FF7A30;      /* 預測按鈕 (改用橘色統一視覺) */
+         --color-bg: #E9E3DF;        /* 整體背景色 */
+      }
+
+      * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+      }
+
+      body {
+         font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+         line-height: 1.6;
+         background-color: var(--color-bg);
+         color: #333;
+      }
+
+      header {
+         background-color: var(--color-dark-blue);
+         color: #fff;
+         padding: 16px 24px;
+         position: sticky;
+         top: 0;
+         z-index: 10;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 陰影稍微加深一點 */
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+
+      header h1 {
+         font-size: 1.3rem;
+         font-weight: 700;
+         letter-spacing: 1px;
+      }
+
+      nav a {
+         color: rgba(255, 255, 255, 0.8);
+         margin-left: 20px;
+         text-decoration: none;
+         font-size: 15px;
+         transition: color 0.3s;
+      }
+
+      nav a:hover {
+         color: #E9E3DF; /* Hover 改為米色以增加對比 */
+      }
+
+      main {
+         max-width: 900px;
+         width: 90%;
+         margin: 50px auto;
+         padding: 60px 40px;
+         background-color: #fff;
+         border-radius: 16px;
+         border-top: 8px solid var(--color-teal); /* 改為黑色線條，更有設計感 */
+         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+         text-align: center;
+      }
+
+      h2 {
+         color: var(--color-dark-blue);
+         margin-bottom: 16px;
+         font-size: 28px;
+         font-weight: 700;
+      }
+
+      p {
+         color: #666;
+         margin-bottom: 24px;
+      }
+
+      input[type="text"] {
+         width: 100%;
+         max-width: 420px;
+         padding: 14px 20px;
+         font-size: 16px;
+         border: 2px solid #ddd;
+         border-radius: 50px;
+         outline: none;
+         transition: all 0.3s;
+         background-color: #f9f9f9;
+      }
+
+      input[type="text"]:focus {
+         border-color: var(--color-primary);
+         background-color: #fff;
+         box-shadow: 0 0 0 4px rgba(255, 122, 48, 0.15); /* 配合橘色的陰影 */
+      }
+
+      .divider-text {
+         font-size: 16px;
+         color: #000000;
+         font-weight: 500;
+         padding: 0 10px;
+      }
+
+      .btn-upload {
+         display: inline-block;
+         background-color: var(--color-primary);
+         color: white;
+         padding: 12px 24px;
+         border-radius: 50px;
+         cursor: pointer;
+         font-size: 16px;
+         font-weight: 600;
+         letter-spacing: 0.5px;
+         transition: all 0.3s;
+         box-shadow: 0 4px 15px rgba(255, 122, 48, 0.4); /* 橘色陰影 */
+         margin-top: 20px;
+      }
+
+      .btn-upload:hover {
+         background-color: var(--color-dark-blue); /* Hover 變藍色 */
+         transform: translateY(-2px);
+         box-shadow: 0 6px 20px rgba(70, 92, 136, 0.4);
+      }
+
+      .btn-upload:active {
+         transform: translateY(0);
+      }
+
+      #fileName {
+         margin-top: 12px;
+         color: var(--color-primary);
+         font-weight: 500;
+      }
+
+      footer {
+         text-align: center;
+         padding: 40px 20px;
+         color: #666; /* 在米色背景上深一點的灰比較易讀 */
+         font-size: 13px;
+      }
+
+      .btn-predict {
+         display: block;
+         width: 100%;
+         max-width: 300px;
+         margin: 30px auto 0;
+
+         background-color: var(--color-primary); /* 統一使用橘色 */
+         color: #fff; /* 橘色底配白字 (原先是黑字，但白字在深橘上更清楚) */
+
+         padding: 16px 0;
+         font-size: 18px;
+         font-weight: 700;
+         border-radius: 12px;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         box-shadow: 0 4px 15px rgba(255, 122, 48, 0.5);
+         text-decoration: none;
+         text-align: center;
+         border: none; /* 移除預設邊框 */
+      }
+
+
+      .btn-predict:hover {
+         filter: brightness(1.1);
+         transform: translateY(-2px);
+         box-shadow: 0 8px 25px rgba(255, 122, 48, 0.7);
+      }
+
+      .btn-predict:active {
+         transform: translateY(1px);
+         box-shadow: 0 2px 10px rgba(255, 122, 48, 0.3);
+      }
+   </style>
+
+</head>
+
+<body>
+   <header>
+      <h1>This is title</h1>
+   </header>
+
+   <main>
+      <h2>Describe your product or upload product images</h2>
+
+      <form action="/predict" method="post" enctype="multipart/form-data">
+         <div class="input-group">
+            <input type="text" name="description" placeholder="Enter descriptions of product">
+            <span class="divider-text">or</span>
+
+            <label for="imageUpload" class="btn-upload">
+               Upload Picture
+            </label>
+            <input type="file" id="imageUpload" name="file" accept="image/*" style="display: none;" required>
+         </div>
+
+         <p id="fileName"></p>
+
+         <button type="submit" class="btn-predict">Predict Price</button>
+      </form>
+   </main>
+
+   <script>
+      document.getElementById('imageUpload').addEventListener('change', function (event) {
+         const fileName = event.target.files[0] ? event.target.files[0].name : '';
+         document.getElementById('fileName').textContent = fileName ? 'File Name: ' + fileName : '';
+      });
+   </script>
+
+   <footer>
+      <p>ML TEAM #18</p>
+   </footer>
+
+</body>
+</html>
