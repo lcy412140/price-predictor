@@ -15,11 +15,11 @@
          #000000 - Black (Accents/Text)
       */
       :root {
-         --color-dark-blue: #465C88; /* Header 背景 */
-         --color-primary: #FF7A30;   /* 上傳按鈕、Focus 框線 */
-         --color-teal: #000000;      /* 裝飾線條、連結 Hover */
-         --color-pink: #FF7A30;      /* 預測按鈕 (改用橘色統一視覺) */
-         --color-bg: #E9E3DF;        /* 整體背景色 */
+         --color-dark-blue: #465C88;
+         --color-primary: #FF7A30;
+         --color-teal: #000000;
+         --color-pink: #FF7A30;
+         --color-bg: #E9E3DF;
       }
 
       * {
@@ -42,7 +42,7 @@
          position: sticky;
          top: 0;
          z-index: 10;
-         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 陰影稍微加深一點 */
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
          display: flex;
          justify-content: space-between;
          align-items: center;
@@ -63,7 +63,7 @@
       }
 
       nav a:hover {
-         color: #E9E3DF; /* Hover 改為米色以增加對比 */
+         color: #E9E3DF;
       }
 
       main {
@@ -73,7 +73,7 @@
          padding: 60px 40px;
          background-color: #fff;
          border-radius: 16px;
-         border-top: 8px solid var(--color-teal); /* 改為黑色線條，更有設計感 */
+         border-top: 8px solid var(--color-teal);
          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
          text-align: center;
       }
@@ -105,7 +105,7 @@
       input[type="text"]:focus {
          border-color: var(--color-primary);
          background-color: #fff;
-         box-shadow: 0 0 0 4px rgba(255, 122, 48, 0.15); /* 配合橘色的陰影 */
+         box-shadow: 0 0 0 4px rgba(255, 122, 48, 0.15);
       }
 
       .divider-text {
@@ -126,12 +126,12 @@
          font-weight: 600;
          letter-spacing: 0.5px;
          transition: all 0.3s;
-         box-shadow: 0 4px 15px rgba(255, 122, 48, 0.4); /* 橘色陰影 */
+         box-shadow: 0 4px 15px rgba(255, 122, 48, 0.4);
          margin-top: 20px;
       }
 
       .btn-upload:hover {
-         background-color: var(--color-dark-blue); /* Hover 變藍色 */
+         background-color: var(--color-dark-blue);
          transform: translateY(-2px);
          box-shadow: 0 6px 20px rgba(70, 92, 136, 0.4);
       }
@@ -149,7 +149,7 @@
       footer {
          text-align: center;
          padding: 40px 20px;
-         color: #666; /* 在米色背景上深一點的灰比較易讀 */
+         color: #666;
          font-size: 13px;
       }
 
@@ -159,8 +159,8 @@
          max-width: 300px;
          margin: 30px auto 0;
 
-         background-color: var(--color-primary); /* 統一使用橘色 */
-         color: #fff; /* 橘色底配白字 (原先是黑字，但白字在深橘上更清楚) */
+         background-color: var(--color-primary);
+         color: #fff;
 
          padding: 16px 0;
          font-size: 18px;
@@ -171,7 +171,7 @@
          box-shadow: 0 4px 15px rgba(255, 122, 48, 0.5);
          text-decoration: none;
          text-align: center;
-         border: none; /* 移除預設邊框 */
+         border: none;
       }
 
 
@@ -226,4 +226,5 @@
    </footer>
 
 </body>
+
 </html>
