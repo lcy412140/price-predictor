@@ -15,7 +15,6 @@
          --color-bg: #E9E3DF;
       }
 
-
       * {
          box-sizing: border-box;
          margin: 0;
@@ -116,6 +115,25 @@
          color: #888;
          font-size: 13px;
       }
+
+      .price-details {
+         background: #f8f9fa;
+         padding: 20px;
+         border-radius: 12px;
+         margin: 30px auto;
+         max-width: 600px;
+         text-align: left;
+         border: 1px solid #eee;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      }
+
+      .detail-row {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 12px;
+         font-size: 1.1rem;
+         align-items: center;
+      }
    </style>
 </head>
 
@@ -133,8 +151,37 @@
       </div>
       {% endif %}
 
-      <p>Based on your input, the estimated price is:</p>
+      <p>Based on specs and condition, the estimated price is:</p>
+
       <span class="price-tag">${{ price }}</span>
+
+      <div class="price-details"
+         style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: left; border: 1px solid #eee;">
+         <h3
+            style="font-size: 1rem; color: #666; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+            Valuation Breakdown
+         </h3>
+
+         <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem;">
+            <span>📝 Base Price (Specs):</span>
+            <span style="font-weight: 600;">${{ base_price }}</span>
+         </div>
+
+         <div
+            style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #dc3545; font-size: 1.1rem;">
+            <span>📷 Defect Deduction ({{ defect_count }} defects):</span>
+            <span style="font-weight: 600;">- ${{ deduction }}</span>
+         </div>
+
+         <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+
+         <div
+            style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; color: var(--color-primary);">
+            <span>Final Estimate:</span>
+            <span>${{ price }}</span>
+         </div>
+      </div>
+
       <a href="/" class="btn-back">Try Another One</a>
    </main>
 

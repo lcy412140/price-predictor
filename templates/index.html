@@ -199,8 +199,9 @@
 
       <form action="/predict" method="post" enctype="multipart/form-data">
          <div class="input-group">
-            <input type="text" name="description" placeholder="Enter descriptions of product">
-            <span class="divider-text">or</span>
+            <input type="text" name="description" placeholder="Enter descriptions of product" required>
+
+            <span class="divider-text">and</span>
 
             <label for="imageUpload" class="btn-upload">
                Upload Picture
@@ -212,6 +213,7 @@
 
          <button type="submit" class="btn-predict">Predict Price</button>
       </form>
+
    </main>
 
    <script>
