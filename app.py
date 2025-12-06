@@ -38,7 +38,7 @@ def predict():
     img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
 
     defect_count = len(results[0])
-    deduction_amount = defect_count * 2500
+    deduction_amount = defect_count * 1000
 
     base_price_text, cleaned_text = text_model.predict(desc)
     base_price_text *= 145
