@@ -104,12 +104,10 @@
          font-size: 13px;
       }
 
-      /* === 修改重點：價格細節區塊樣式 === */
       .price-details {
          background: #f8f9fa;
          padding: 20px;
          border-radius: 12px;
-         /* 上下 30px，左右 auto (這就是置中的關鍵) */
          margin: 30px auto;
          max-width: 600px;
          text-align: left;
@@ -142,14 +140,13 @@
          font-size: 1.2rem;
          color: var(--color-primary);
          margin-top: 10px;
-         /* 增加一點上方間距 */
       }
    </style>
 </head>
 
 <body>
    <header>
-      <h1>This is title</h1>
+      <h1>ML Team 18 Price Predictor</h1>
    </header>
 
    <main>
@@ -157,7 +154,6 @@
 
       {% if result_image %}
       <div style="margin-bottom: 20px;">
-         <!-- 讓圖片也稍微有點陰影比較好看 -->
          <img src="data:image/jpeg;base64,{{ result_image }}"
             style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Result">
       </div>
@@ -165,9 +161,8 @@
 
       <p>Based on specs and condition, the estimated price is:</p>
 
-      <span class="price-tag">${{ price }}</span>
+      <span class="price-tag">NT${{ price }}</span>
 
-      <!-- 直接使用 CSS class，拿掉 inline style，就會自動置中了 -->
       <div class="price-details">
          <h3>Valuation Breakdown</h3>
 
@@ -185,7 +180,7 @@
 
          <div class="detail-row final">
             <span>Final Estimate:</span>
-            <span>${{ price }}</span>
+            <span>NT${{ price }}</span>
          </div>
       </div>
 
